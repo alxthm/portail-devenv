@@ -1,7 +1,7 @@
 # portail-devenv
 Environnement de développement pour le portail avec Docker
 
-
+## Installation
 L'installation d'un environnement de développement devient très simple avec ce repo.
 Avant de commencer, assurez vous des choses suivantes:
 
@@ -18,3 +18,8 @@ Ensuite, pour initialiser et démarrer le portail:
 
 3. Démarrez le script principal
 `python start.py`
+
+
+## Se connecter au portail
+
+Depuis un navigateur web, allez sur le site http://localhost:8000. Connectez vous avec votre identifiant et le mot de passe `password_portail`
