@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  database:
+    container_name: portail-database
+    image: mysql:5.7
+    env_file:
+      - ./mysql-constants.env
+    volumes:
+      - ./portail.sql:/docker-entrypoint-initdb.d/portail.sql
+      - ./database/:/var/lib/mysql
+  django:
+    container_name: portail-python
+    image: florianveaux/portail_django:alpine
+    env_file:
+      - ./mysql-constants.env
+      - ./django-constants.env
+    command: bash -c "while ! nc -w 1 -z database 3306; do sleep 0.01; done; python3 /code/manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./portail:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - database
